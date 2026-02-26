@@ -265,17 +265,15 @@ async def generate_conversation_title(user_query: str) -> str:
     Returns:
         A short title (3-5 words)
     """
-    title_prompt = f"""Generate a very short title (3-5 words maximum) that summarizes the following question.
-The title should be concise and descriptive. Do not use quotes or punctuation in the title.
+    title_prompt = f"""Generate a very short, concise title (2-5 words maximum) that summarizes the core topic of this question.
+Do not use quotes, punctuation, or conversational filler. Just the core topic keywords.
 
-Question: {user_query}
-
-Title:"""
+Question: {user_query}"""
 
     messages = [{"role": "user", "content": title_prompt}]
 
-    # Use gemini-2.5-flash for title generation (fast and cheap)
-    response = await query_model("google/gemini-2.5-flash", messages, timeout=30.0)
+    # We will use the fast chairman model for title generation since we know it works
+    response = await query_model(CHAIRMAN_MODEL, messages, timeout=30.0)
 
     if response is None:
         # Fallback to a generic title
@@ -283,10 +281,13 @@ Title:"""
 
     title = response.get('content', 'New Conversation').strip()
 
-    # Clean up the title - remove quotes, limit length
+    # Clean up the title - remove quotes, prefixes like "Title:" if the model added them anyway
+    if title.lower().startswith("title:"):
+        title = title[6:].strip()
+        
     title = title.strip('"\'')
 
-    # Truncate if too long
+    # Truncate if too long (more than 50 chars)
     if len(title) > 50:
         title = title[:47] + "..."
 
