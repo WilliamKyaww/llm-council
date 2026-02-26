@@ -63,6 +63,26 @@ export const api = {
   },
 
   /**
+   * Rename a conversation.
+   */
+  async renameConversation(conversationId, title) {
+    const response = await fetch(
+      `${API_BASE}/api/conversations/${conversationId}/title`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title }),
+      }
+    );
+    if (!response.ok) {
+      throw new Error('Failed to rename conversation');
+    }
+    return response.json();
+  },
+
+  /**
    * Send a message in a conversation.
    */
   async sendMessage(conversationId, content) {

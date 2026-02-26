@@ -130,14 +130,19 @@
   text-overflow: ellipsis;
 }
 
-.conversation-title {
+.conversation-title-input {
+  width: 100%;
+  background: var(--bg-base);
+  border: 1px solid var(--accent-primary);
+  border-radius: 4px;
   color: var(--text-primary);
   font-size: 13px;
   font-weight: 500;
+  font-family: inherit;
   margin-bottom: 3px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  padding: 1px 4px;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-glow);
 }
 
 .conversation-content {
@@ -145,7 +150,16 @@
   min-width: 0;
 }
 
-.delete-conv-btn {
+.conversation-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.action-btn {
   background: transparent;
   border: none;
   color: var(--text-muted);
@@ -155,31 +169,34 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
   transition: all 0.2s ease;
-  flex-shrink: 0;
 }
 
 /* On mobile/touch devices we might want to just show it always, but for desktop we use hover */
 @media (hover: hover) {
-  .conversation-item:hover .delete-conv-btn {
+  .conversation-item:hover .conversation-actions {
     opacity: 1;
   }
 }
 
 /* Fallback for devices that don't support hover well */
 @media (hover: none) {
-  .delete-conv-btn {
+  .conversation-actions {
     opacity: 1;
   }
 }
 
-.delete-conv-btn svg {
+.action-btn svg {
   width: 14px;
   height: 14px;
 }
 
-.delete-conv-btn:hover {
+.action-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.action-btn.delete-btn:hover {
   background: rgba(239, 68, 68, 0.15);
   color: #ef4444;
 }
