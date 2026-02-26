@@ -41,8 +41,9 @@ export default function ChatInterface({
     return (
       <div className="chat-interface">
         <div className="empty-state">
-          <h2>Welcome to LLM Council</h2>
-          <p>Create a new conversation to get started</p>
+          <div className="empty-state-icon">⚖️</div>
+          <h2>LLM Council</h2>
+          <p>Create a new conversation to get started. The council will collect, rank, and synthesize answers from multiple models.</p>
         </div>
       </div>
     );
@@ -53,6 +54,7 @@ export default function ChatInterface({
       <div className="messages-container">
         {conversation.messages.length === 0 ? (
           <div className="empty-state">
+            <div className="empty-state-icon">💬</div>
             <h2>Start a conversation</h2>
             <p>Ask a question to consult the LLM Council</p>
           </div>
@@ -124,7 +126,7 @@ export default function ChatInterface({
         <form className="input-form" onSubmit={handleSubmit}>
           <textarea
             className="message-input"
-            placeholder="Ask your question... (Shift+Enter for new line, Enter to send)"
+            placeholder="Ask your question… (Shift+Enter for new line, Enter to send)"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}

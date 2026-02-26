@@ -1,12 +1,12 @@
-.stage2 {
-  background: #fafafa;
-}
+/* Stage2 shares base .stage / .stage-title / .tabs / .tab / .tab-content from Stage1.css */
 
 .stage2 h4 {
-  margin: 20px 0 8px 0;
-  color: #333;
-  font-size: 14px;
-  font-weight: 600;
+  margin: 18px 0 8px 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
 }
 
 .stage2 h4:first-of-type {
@@ -14,24 +14,120 @@
 }
 
 .stage-description {
-  margin: 0 0 12px 0;
-  color: #666;
+  margin: 0 0 14px 0;
+  color: var(--text-muted);
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
-.aggregate-rankings {
-  background: #f0f7ff;
-  padding: 16px;
+/* ── Stage 2 specific tab/content overrides ── */
+.stage2 .tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.stage2 .tab {
+  padding: 7px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-soft);
   border-radius: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  transition: all 0.18s;
+}
+
+.stage2 .tab:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--border-accent);
+}
+
+.stage2 .tab.active {
+  background: var(--accent-glow);
+  color: var(--accent-hover);
+  border-color: var(--accent-primary);
+  font-weight: 600;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.stage2 .tab-content {
+  background: var(--bg-elevated);
+  padding: 18px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
   margin-bottom: 20px;
-  border: 2px solid #d0e7ff;
+}
+
+.ranking-model {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ranking-model::before {
+  content: '▸';
+  color: var(--accent-primary);
+  font-size: 10px;
+}
+
+.ranking-content {
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* ── Parsed ranking ── */
+.parsed-ranking {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.parsed-ranking strong {
+  color: var(--accent-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.parsed-ranking ol {
+  margin: 10px 0 0 0;
+  padding-left: 20px;
+  color: var(--text-primary);
+}
+
+.parsed-ranking li {
+  margin: 5px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* ── Aggregate rankings ── */
+.aggregate-rankings {
+  background: var(--gold-bg);
+  padding: 18px 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  border: 1px solid rgba(240, 192, 96, 0.2);
 }
 
 .aggregate-rankings h4 {
-  margin: 0 0 12px 0;
-  color: #2a7ae2;
-  font-size: 15px;
+  margin: 0 0 14px 0 !important;
+  color: var(--gold) !important;
+  font-size: 12px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
 }
 
 .aggregate-list {
@@ -44,110 +140,45 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px;
-  background: #ffffff;
-  border-radius: 6px;
-  border: 1px solid #d0e7ff;
+  padding: 10px 14px;
+  background: var(--bg-elevated);
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  transition: border-color 0.15s;
+}
+
+.aggregate-item:first-child {
+  border-color: rgba(240, 192, 96, 0.4);
+  background: rgba(240, 192, 96, 0.05);
 }
 
 .rank-position {
-  color: #2a7ae2;
+  color: var(--gold);
   font-weight: 700;
-  font-size: 16px;
-  min-width: 35px;
+  font-size: 15px;
+  min-width: 32px;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .rank-model {
   flex: 1;
-  color: #333;
-  font-family: monospace;
-  font-size: 14px;
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
   font-weight: 500;
 }
 
 .rank-score {
-  color: #666;
-  font-size: 13px;
-  font-family: monospace;
-}
-
-.stage2 .tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-
-.stage2 .tab {
-  padding: 8px 16px;
-  background: #ffffff;
-  border: 1px solid #d0d0d0;
-  border-radius: 6px 6px 0 0;
-  color: #666;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.2s;
-}
-
-.stage2 .tab:hover {
-  background: #f0f0f0;
-  color: #333;
-  border-color: #4a90e2;
-}
-
-.stage2 .tab.active {
-  background: #ffffff;
-  color: #4a90e2;
-  border-color: #4a90e2;
-  border-bottom-color: #ffffff;
-  font-weight: 600;
-}
-
-.stage2 .tab-content {
-  background: #ffffff;
-  padding: 16px;
-  border-radius: 6px;
-  border: 1px solid #e0e0e0;
-  margin-bottom: 20px;
-}
-
-.ranking-model {
-  color: #888;
+  color: var(--text-secondary);
   font-size: 12px;
-  font-family: monospace;
-  margin-bottom: 12px;
-}
-
-.ranking-content {
-  color: #333;
-  line-height: 1.6;
-  font-size: 14px;
-}
-
-.parsed-ranking {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 2px solid #e0e0e0;
-}
-
-.parsed-ranking strong {
-  color: #2a7ae2;
-  font-size: 13px;
-}
-
-.parsed-ranking ol {
-  margin: 8px 0 0 0;
-  padding-left: 24px;
-  color: #333;
-}
-
-.parsed-ranking li {
-  margin: 4px 0;
-  font-family: monospace;
-  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--bg-surface);
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
 }
 
 .rank-count {
-  color: #999;
-  font-size: 12px;
+  color: var(--text-muted);
+  font-size: 11px;
 }
